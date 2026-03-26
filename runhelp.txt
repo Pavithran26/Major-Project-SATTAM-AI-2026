@@ -1,0 +1,23 @@
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_YWN0dWFsLWJlZGJ1Zy01NS5jbGVyay5hY2NvdW50cy5kZXYk
+CLERK_SECRET_KEY=sk_test_FNJUFvNlZZslr4yUknPqw4fy3k9PJB0FwygAzaVhWS
+
+
+####backend-----------------------------------------------------------------------
+
+
+cd "d:\Major Project\Sattam-AI-Backend-main"
+
+.\.venv313\Scripts\Activate.ps1
+
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+
+
+
+
+##fromtend===========================================================================
+
+
+
+cd .\SattamAI-frontend-main\
+
+npm run dev
