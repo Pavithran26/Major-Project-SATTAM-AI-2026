@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sattam AI – தமிழ்நாடு சட்டம் உதவியாளர்</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+        background: #f9f9f9;
+      }
+      header {
+        text-align: right;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        background: white;
+      }
+      button {
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #f0f0f0;
+        cursor: pointer;
+      }
+      .content-box {
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 4px;
+        padding: 16px;
+        margin-bottom: 16px;
+        max-width: 900px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button id="toggleBtn">மொழி மாற்று (Toggle)</button>
+    </header>
+
+    <!-- English section (hidden by default) -->
+    <div id="englishSection" class="content-box hidden">
+      <h2>Sattam AI - Tamil Nadu Law Chatbot</h2>
+      <p>
+        Sattam AI is a full-stack AI-powered legal assistant specialized for
+        Tamil Nadu laws. It ingests Tamil Nadu legal PDFs (acts, rules,
+        regulations), processes them into a vector database using RAG
+        (Retrieval-Augmented Generation), and provides intelligent chat-based
+        querying via mobile (Flutter), web (Next.js), and backend APIs
+        (FastAPI).
+      </p>
+
+      <h3>🚀 Features</h3>
+      <ul>
+        <li>
+          <strong>RAG Pipeline</strong>: Embeddings from legal PDFs using
+          sentence-transformers, stored in ChromaDB.
+        </li>
+        <li>
+          <strong>Multi-LLM Support</strong>: Google Gemini (free tier) or
+          OpenAI-compatible (via Cloudflare AI Gateway).
+        </li>
+        <li>
+          <strong>Document Management</strong>: Upload/process Tamil Nadu law
+          PDFs, web scraping support.
+        </li>
+        <li>
+          <strong>Chat Interfaces</strong>: Real-time chat on web/mobile with
+          context-aware responses.
+        </li>
+        <li>
+          <strong>Auth</strong>: Clerk integration for user management.
+        </li>
+        <li>
+          <strong>Cross-Platform</strong>: Flutter mobile app, Next.js web app.
+        </li>
+        <li>
+          <strong>Data</strong>: Pre-loaded with 50+ Tamil Nadu acts/rules
+          (e.g., Tamil Nadu Land Reforms, Municipal Rules).
+        </li>
+      </ul>
+
+      <h3>🏗️ Architecture</h3>
+      <pre>
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Flutter App   │    │  Next.js Web     │    │   Legal PDFs    │
+│  (Mobile)       │◄──►│    Frontend      │◄──►│  (50+ TN Laws)  │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                              ▲
+                              │ REST APIs (Chat, Docs, Admin)
+                              ▼
+                       ┌──────────────────┐
+                       │ FastAPI Backend  │
+                       │ - RAG Service    │
+                       │ - Gemini/OpenAI  │
+                       │ - Chroma Vector  │
+                       └──────────────────┘
+      </pre>
+
+      <h3>📦 Components</h3>
+      <table border="1" cellspacing="0" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Tech</th>
+            <th>Path</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Backend</td>
+            <td>FastAPI, LangChain, ChromaDB</td>
+            <td><code>Sattam-AI-Backend-main/</code></td>
+            <td>PDF processing, RAG chat, APIs</td>
+          </tr>
+          <tr>
+            <td>Web Frontend</td>
+            <td>Next.js 16+, React 19, Tailwind, Clerk</td>
+            <td><code>SattamAI-frontend-main/</code></td>
+            <td>Web chat UI</td>
+          </tr>
+          <tr>
+            <td>Mobile App</td>
+            <td>Flutter 3.8+, Clerk Flutter</td>
+            <td><code>sattam_flutter-master/</code></td>
+            <td>Mobile chat UI</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>🚀 Quick Start (Development)</h3>
+      <p><strong>1. Backend</strong></p
