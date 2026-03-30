@@ -1,13 +1,9 @@
-<!-- TAMIL CONTENT - DEFAULT (Your full content, perfectly formatted) -->
-<div id="tamilDiv" class="content">
-  <div class="shields">
-    [![Flutter](https://img.shields.io/badge/Flutter-3.8+-blue)](https://flutter.dev)
-    [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-yellow)](https://fastapi.tiangolo.com)
-    [![Next.js](https://img.shields.io/badge/Next.js-16+-black)](https://nextjs.org)
-    [![Python](https://img.shields.io/badge/Python-3.10+-green)](https://python.org)
-  </div>
+# Sattam AI – தமிழ்நாடு சட்டம் உதவியாளர் (Law Chatbot)
 
-  <h1>Sattam AI – தமிழ்நாடு சட்டம் உதவியாளர் (Law Chatbot)</h1>
+[![Flutter](https://img.shields.io/badge/Flutter-3.8%2B-blue)](https://flutter.dev)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104-yellow)](https://fastapi.tiangolo.com)
+[![Next.js](https://img.shields.io/badge/Next.js-16%2B-black)](https://nextjs.org)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-green)](https://python.org)
 
   <p>Sattam AI என்பது <strong>தமிழ்நாடு சட்டங்களுக்கான முழு‑முனை (full‑stack) AI உதவியாளர்</strong>. தமிழ்நாட்டின் சட்ட PDFகள் (சட்டங்கள், விதிகள், நெறிமுறைகள்) இங்கே ஏற்றப்பட்டு RAG (Retrieval‑Augmented Generation) மூலம் <strong>வெக்டர் தரவுத்தளத்தில் சேமிக்கப்படும்</strong>. இந்த அமைப்பு mobile (Flutter), web (Next.js) மற்றும் backend APIs (FastAPI) மூலம் <strong>சட்டம்‑சார்ந்த கேள்விகளுக்கு செயற்கை நுண்ணறிவு (AI) பதில்கள்</strong> அளிக்கிறது.</p>
 
