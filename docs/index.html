@@ -1,140 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sattam AI – தமிழ்நாடு சட்டம் உதவியாளர்</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        line-height: 1.6;
-        background: #f9f9f9;
-      }
-      header {
-        text-align: right;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ddd;
-        background: white;
-      }
-      button {
-        padding: 8px 12px;
-        font-size: 14px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        background: #f0f0f0;
-        cursor: pointer;
-      }
-      .content-box {
-        border: 1px solid #ddd;
-        background: white;
-        border-radius: 4px;
-        padding: 16px;
-        margin-bottom: 16px;
-        max-width: 900px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-      .hidden {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <button id="toggleBtn">மொழி மாற்று (Toggle)</button>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SATTAM AI 2026 — README</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- English section (hidden by default) -->
-    <div id="englishSection" class="content-box hidden">
-      <h2>Sattam AI - Tamil Nadu Law Chatbot</h2>
-      <p>
-        Sattam AI is a full-stack AI-powered legal assistant specialized for
-        Tamil Nadu laws. It ingests Tamil Nadu legal PDFs (acts, rules,
-        regulations), processes them into a vector database using RAG
-        (Retrieval-Augmented Generation), and provides intelligent chat-based
-        querying via mobile (Flutter), web (Next.js), and backend APIs
-        (FastAPI).
-      </p>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f6f8fa;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
 
-      <h3>🚀 Features</h3>
-      <ul>
-        <li>
-          <strong>RAG Pipeline</strong>: Embeddings from legal PDFs using
-          sentence-transformers, stored in ChromaDB.
-        </li>
-        <li>
-          <strong>Multi-LLM Support</strong>: Google Gemini (free tier) or
-          OpenAI-compatible (via Cloudflare AI Gateway).
-        </li>
-        <li>
-          <strong>Document Management</strong>: Upload/process Tamil Nadu law
-          PDFs, web scraping support.
-        </li>
-        <li>
-          <strong>Chat Interfaces</strong>: Real-time chat on web/mobile with
-          context-aware responses.
-        </li>
-        <li>
-          <strong>Auth</strong>: Clerk integration for user management.
-        </li>
-        <li>
-          <strong>Cross-Platform</strong>: Flutter mobile app, Next.js web app.
-        </li>
-        <li>
-          <strong>Data</strong>: Pre-loaded with 50+ Tamil Nadu acts/rules
-          (e.g., Tamil Nadu Land Reforms, Municipal Rules).
-        </li>
-      </ul>
+    header {
+      background: #0d1117;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-      <h3>🏗️ Architecture</h3>
-      <pre>
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Flutter App   │    │  Next.js Web     │    │   Legal PDFs    │
-│  (Mobile)       │◄──►│    Frontend      │◄──►│  (50+ TN Laws)  │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                              ▲
-                              │ REST APIs (Chat, Docs, Admin)
-                              ▼
-                       ┌──────────────────┐
-                       │ FastAPI Backend  │
-                       │ - RAG Service    │
-                       │ - Gemini/OpenAI  │
-                       │ - Chroma Vector  │
-                       └──────────────────┘
-      </pre>
+    .repo-title {
+      color: #e6edf3;
+      font-size: 15px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-      <h3>📦 Components</h3>
-      <table border="1" cellspacing="0" cellpadding="6">
-        <thead>
-          <tr>
-            <th>Component</th>
-            <th>Tech</th>
-            <th>Path</th>
-            <th>Purpose</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Backend</td>
-            <td>FastAPI, LangChain, ChromaDB</td>
-            <td><code>Sattam-AI-Backend-main/</code></td>
-            <td>PDF processing, RAG chat, APIs</td>
-          </tr>
-          <tr>
-            <td>Web Frontend</td>
-            <td>Next.js 16+, React 19, Tailwind, Clerk</td>
-            <td><code>SattamAI-frontend-main/</code></td>
-            <td>Web chat UI</td>
-          </tr>
-          <tr>
-            <td>Mobile App</td>
-            <td>Flutter 3.8+, Clerk Flutter</td>
-            <td><code>sattam_flutter-master/</code></td>
-            <td>Mobile chat UI</td>
-          </tr>
-        </tbody>
-      </table>
+    .repo-title svg { opacity: 0.7; }
 
-      <h3>🚀 Quick Start (Development)</h3>
-      <p><strong>1. Backend</strong></p
+    .toggle-wrap {
+      display: flex;
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 999px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .toggle-btn {
+      padding: 6px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      background: transparent;
+      color: #8b949e;
+      transition: all 0.18s;
+    }
+
+    .toggle-btn.active {
+      background: #388bfd22;
+      color: #58a6ff;
+      border: 1px solid #388bfd55;
+    }
+
+    .toggle-btn:hover:not(.active) {
+      color: #e6edf3;
+      background: #30363d;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 32px auto;
+      padding: 0 20px 60px;
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot.ok      { background: #3fb950; }
+    .dot.err     { background: #f85149; }
+    .dot.loading { background: #d29922; animation: pulse 1s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .content-box {
+      background: #ffffff;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      padding: 32px 40px;
+    }
+
+    /* GitHub-style markdown */
+    .md h1 { font-size: 2em; font-weight: 600; border-bottom: 1px solid #d0d7de; padding-bottom: 10px; margin: 0 0 16px; }
+    .md h2 { font-size: 1.5em; font-weight: 600; border-bottom: 1px solid #d0d7de; padding-bottom: 8px; margin: 24px 0 12px; }
+    .md h3 { font-size: 1.25em; font-weight: 600; margin: 20px 0 10px; }
+    .md p  { margin: 0 0 14px; line-height: 1.7; font-size: 15px; }
+    .md ul, .md ol { padding-left: 24px; margin: 0 0 14px; }
+    .md li { line-height: 1.7; font-size: 15px; margin-bottom: 4px; }
+    .md code { background: #f0f2f5; padding: 2px 6px; border-radius: 4px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 13px; }
+    .md pre  { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 16px; overflow-x: auto; margin: 0 0 14px; }
+    .md pre code { background: none; padding: 0; font-size: 13px; }
+    .md blockquote { border-left: 4px solid #d0d7de; padding: 4px 16px; color: #57606a; margin: 0 0 14px; }
+    .md hr { border: none; border-top: 1px solid #d0d7de; margin: 20px 0; }
+    .md a  { color: #0969da; text-decoration: none; }
+    .md a:hover { text-decoration: underline; }
+    .md img { max-width: 100%; border-radius: 6px; }
+    .md table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: 14px; }
+    .md th { background: #f6f8fa; border: 1px solid #d0d7de; padding: 8px 12px; font-weight: 600; }
+    .md td { border: 1px solid #d0d7de; padding: 8px 12px; }
+    .md tr:nth-child(even) td { background: #f6f8fa; }
+
+    .error-box {
+      background: #fff0f0;
+      border: 1px solid #ffc8c8;
+      color: #cf222e;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .content-box { padding: 20px 18px; }
+      main { margin: 16px auto; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #0d1117; color: #e6edf3; }
+      .content-box { background: #161b22; border-color: #30363d; }
+      .md h1, .md h2 { border-color: #30363d; }
+      .md code { background: #21262d; color: #e6edf3; }
+      .md pre  { background: #161b22; border-color: #30363d; }
+      .md blockquote { border-color: #30363d; color: #8b949e; }
+      .md hr   { border-color: #30363d; }
+      .md a    { color: #58a6ff; }
+      .md th   { background: #21262d; border-color: #30363d; }
+      .md td   { border-color: #30363d; }
+      .md tr:nth-child(even) td { background: #1c2128; }
+      .status-bar { color: #8b949e; }
+      .error-box { background: #2d1114; border-color: #f85149; color: #ff7b72; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="repo-title">
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="#e6edf3"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    Pavithran26 / Major-Project-SATTAM-AI-2026
+  </div>
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" id="btn-ta" onclick="switchLang('ta')">🇮🇳 தமிழ்</button>
+    <button class="toggle-btn"        id="btn-en" onclick="switchLang('en')">🇬🇧 English</button>
+  </div>
+</header>
+
+<main>
+  <div class="status-bar">
+    <span class="dot loading" id="dot"></span>
+    <span id="status-text">Loading...</span>
+  </div>
+  <div class="content-box">
+    <div class="md" id="md-output"></div>
+  </div>
+</main>
+
+<script>
+  const OWNER  = 'Pavithran26';
+  const REPO   = 'Major-Project-SATTAM-AI-2026';
+  const BRANCH = 'main';
+  const FILES  = { en: 'README_Eng.md', ta: 'README.md' };
+  const cache  = {};
+  let currentLang = 'ta';
+
+  function rawUrl(f) {
+    return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${f}`;
+  }
+
+  async function fetchMd(lang) {
+    if (cache[lang]) return cache[lang];
+    const res = await fetch(rawUrl(FILES[lang]));
+    if (!res.ok) throw new Error(`HTTP ${res.status} — "${FILES[lang]}" not found`);
+    cache[lang] = await res.text();
+    return cache[lang];
+  }
+
+  function setStatus(state, msg) {
+    document.getElementById('dot').className = 'dot ' + state;
+    document.getElementById('status-text').textContent = msg;
+  }
+
+  async function showLang(lang) {
+    setStatus('loading', 'Loading ' + FILES[lang] + '…');
+    document.getElementById('md-output').innerHTML = '';
+    try {
+      const text = await fetchMd(lang);
+      setStatus('ok', FILES[lang]);
+      document.getElementById('md-output').innerHTML = marked.parse(text);
+    } catch(e) {
+      setStatus('err', 'Failed to load');
+      document.getElementById('md-output').innerHTML =
+        `<div class="error-box"><strong>Could not load ${FILES[lang]}</strong><br><br>${e.message}<br><br>Make sure the repo is public and the file exists on the <strong>${BRANCH}</strong> branch.</div>`;
+    }
+  }
+
+  function switchLang(lang) {
+    currentLang = lang;
+    document.getElementById('btn-en').className = 'toggle-btn' + (lang === 'en' ? ' active' : '');
+    document.getElementById('btn-ta').className = 'toggle-btn' + (lang === 'ta' ? ' active' : '');
+    showLang(lang);
+  }
+
+  showLang('ta');
+</script>
+
+</body>
+</html>
