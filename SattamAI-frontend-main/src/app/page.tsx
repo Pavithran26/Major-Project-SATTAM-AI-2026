@@ -2,10 +2,11 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from 'react';
+import Link from 'next/link';
 import { MessageSquare, BookOpen, Scale, FileText, Users, Shield, Home, Car, Briefcase, Heart, GraduationCap, Building } from 'lucide-react';
-import { SignInButton, SignUpButton, useAuth } from '@clerk/nextjs';
 import ChatInterface from '@/components/ChatInterface';
 import LanguageToggle from '@/components/LanguageToggle';
+import { useFirebaseAuth } from '@/components/AuthProvider';
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
@@ -439,7 +440,7 @@ const legalCategories: LegalCategory[] = [
 ];
 
 export default function Page() {
-  const { isLoaded, userId } = useAuth();
+  const { isLoaded, user } = useFirebaseAuth();
   const [showChat, setShowChat] = useState(false);
   const [chatCategory, setChatCategory] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<LegalCategory | null>(null);
@@ -451,7 +452,7 @@ export default function Page() {
   useEffect(() => {
     let cancelled = false;
 
-    if (!isLoaded || !userId) {
+    if (!isLoaded || !user) {
       return () => {
         cancelled = true;
       };
@@ -495,7 +496,7 @@ export default function Page() {
     return () => {
       cancelled = true;
     };
-  }, [isLoaded, userId, language]);
+  }, [isLoaded, user, language]);
 
   const dynamicStudy = selectedCategory ? studyByCategoryId[selectedCategory.id] : undefined;
   const selectedDescription = selectedCategory
@@ -549,7 +550,7 @@ export default function Page() {
     );
   }
 
-  if (!userId) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-green-50 to-white">
         <div className="mx-auto flex min-h-screen max-w-3xl items-center justify-center px-4 py-12">
@@ -561,16 +562,18 @@ export default function Page() {
               Please sign in to access the legal branches and chat assistant.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <SignInButton mode="modal">
-                <button className="inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">
-                  Sign In
-                </button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <button className="inline-flex min-h-11 items-center justify-center rounded-xl border border-emerald-600 bg-white px-5 py-2.5 font-semibold text-emerald-700 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">
-                  Sign Up
-                </button>
-              </SignUpButton>
+              <Link
+                href="/sign-in"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/sign-up"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-emerald-600 bg-white px-5 py-2.5 font-semibold text-emerald-700 shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                Sign Up
+              </Link>
             </div>
           </div>
         </div>
