@@ -1,29 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:clerk_flutter/clerk_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'homepage.dart';
+import 'firebase_options.dart';
 
 const Color _emeraldPrimary = Color(0xFF059669); // emerald-600
 const Color _greenAccent = Color(0xFF16A34A); // green-600
 
-void main() {
-  const app = MyApp();
-
-  // clerk_flutter currently relies on path_provider storage that is not
-  // available on web in this project setup.
-  if (kIsWeb) {
-    runApp(app);
-    return;
-  }
-
-  runApp(
-    ClerkAuth(
-      config: ClerkAuthConfig(
-        publishableKey: 'pk_test_d29ya2luZy1ob3VuZC02MS5jbGVyay5hY2NvdW50cy5kZXYk',
-      ),
-      child: app,
-    ),
-  );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

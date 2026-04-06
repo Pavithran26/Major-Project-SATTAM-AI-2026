@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'app_session.dart';
 import 'chat_screen.dart';
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    AppSession.bindFirebaseAuth(FirebaseAuth.instance);
     _isSignedIn = AppSession.isSignedIn.value;
     AppSession.isSignedIn.addListener(_onSessionChanged);
     if (_isSignedIn) {
@@ -89,7 +91,7 @@ class _HomePageState extends State<HomePage> {
     final didSignIn = await Navigator.of(context).push<bool>(
       MaterialPageRoute(
         builder: (context) =>
-            const ClerkAuthScreen(mode: ClerkAuthFlowMode.signIn),
+            const FirebaseAuthScreen(mode: FirebaseAuthFlowMode.signIn),
       ),
     );
     if (!context.mounted || didSignIn != true) {
@@ -103,7 +105,7 @@ class _HomePageState extends State<HomePage> {
     final didSignOut = await Navigator.of(context).push<bool>(
       MaterialPageRoute(
         builder: (context) =>
-            const ClerkAuthScreen(mode: ClerkAuthFlowMode.signOut),
+            const FirebaseAuthScreen(mode: FirebaseAuthFlowMode.signOut),
       ),
     );
     if (!context.mounted || didSignOut != true) {
@@ -251,8 +253,8 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 10),
                     Text(
                       _tx(
-                        'Please sign in with Clerk to continue.',
-                        'தொடர கிளார்க் மூலம் உள்நுழையவும்.',
+                        'Please sign in with Firebase to continue.',
+                        'தொடர Firebase மூலம் உள்நுழையவும்.',
                       ),
                       textAlign: TextAlign.center,
                       style: const TextStyle(

@@ -9,7 +9,7 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     expect(find.text('Tamil Nadu Legal AI Assistant'), findsOneWidget);
-    expect(find.text('Please sign in with Clerk to continue.'), findsOneWidget);
+    expect(find.text('Please sign in with Firebase to continue.'), findsOneWidget);
     expect(find.text('Sign In / Sign Up'), findsOneWidget);
   });
 }
